@@ -1,0 +1,5 @@
+BK001|Lap Trinh C++|Bjarne Stroustrup|NXB Tre|250000|2020|800|15/01/2024|0
+BK002|Clean Code|Robert C. Martin|NXB Thanh Nien|320000|2018|464|20/02/2024|0
+BK003|Design Patterns|Gang of Four|NXB Kim Dong|450000|2019|395|10/03/2024|0
+BK004|The Pragmatic Programmer|Andrew Hunt|NXB Giao Duc|380000|2021|352|05/04/2024|0
+BK005|Code Complete|Steve McConnell|NXB Tre|420000|2019|960|12/05/2024|0

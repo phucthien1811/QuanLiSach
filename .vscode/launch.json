@@ -1,16 +1,16 @@
 {
     "configurations": [
         {
-            "name": "(Windows) Launch",
+            "name": "(Windows) Launch Library System",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "program": "${workspaceFolder}\\LibrarySystem.exe",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "cwd": "${workspaceFolder}",
             "environment": [],
             "console": "externalTerminal",
-            "preLaunchTask": "C/C++: g++.exe build active file"
+            "preLaunchTask": "Build Library Management System"
         }
     ],
     "version": "2.0.0"
