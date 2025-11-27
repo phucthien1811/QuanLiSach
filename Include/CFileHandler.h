@@ -1,23 +1,34 @@
-// File: Source/CFileHandler.cpp
-bool CFileHandler::loadBooks(const string& strPath, CGenericList<CBook>& list) {
-    ifstream fileInput;
-    fileInput.open(strPath.c_str());
+#ifndef CFILEHANDLER_H
+#define CFILEHANDLER_H
 
-    // Check file ton tai
-    if (!fileInput.is_open()) {
-        return false; 
-    }
+#include <string>
+#include "CGenericList.h"
+#include "CBook.h"
+#include "CReader.h"
+#include "CLoanTicket.h"
 
-    string strLine;
-    while (getline(fileInput, strLine)) {
-        // Parse chuoi: BK001|Ten Sach|...
-        // Tao doi tuong CBook moi
-        CBook book; 
-        // ... logic tach chuoi va set data cho book ...
-        
-        list.add(book);
-    }
+using namespace std;
 
-    fileInput.close(); // STANDARD II.18: BAT BUOC PHAI CO
-    return true;
-}
+class CFileHandler {
+public:
+    // Book operations
+    static bool loadBooks(const string& strPath, CGenericList<CBook>& list);
+    static bool saveBooks(const string& strPath, CGenericList<CBook>& list);
+
+    // Reader operations
+    static bool loadReaders(const string& strPath, CGenericList<CReader>& list);
+    static bool saveReaders(const string& strPath, CGenericList<CReader>& list);
+
+    // Loan Ticket operations
+    static bool loadTickets(const string& strPath, CGenericList<CLoanTicket>& list);
+    static bool saveTickets(const string& strPath, CGenericList<CLoanTicket>& list);
+
+    // Admin login check
+    static bool checkLogin(const string& strPath, const string& strUsername, const string& strPassword);
+
+private:
+    // Helper method to split string by delimiter
+    static void split(const string& strLine, char cDelimiter, string arrResult[], int& iCount);
+};
+
+#endif // CFILEHANDLER_H

@@ -1,25 +1,43 @@
-// File: Include/CBookManager.h
-#ifndef C_BOOK_MANAGER_H  // Include Guard chuẩn
-#define C_BOOK_MANAGER_H
+#ifndef CBOOKMANAGER_H
+#define CBOOKMANAGER_H
 
 #include "CBook.h"
 #include "CGenericList.h"
+#include "CFileHandler.h"
 
-// Class quản lý các nghiệp vụ liên quan đến sách
+// Status constants for Book
+const int BOOK_AVAILABLE = 0;  // Book is available for borrowing
+
 class CBookManager {
 private:
-    CGenericList<CBook> m_listBooks; // Biến private có tiền tố m_
+    CGenericList<CBook> m_listBooks;  // List of books
+    string m_strFilePath;              // Path to data file
 
 public:
+    // Constructor: Load books from file
     CBookManager();
+    CBookManager(const string& strFilePath);
+    
+    // Destructor: Save books to file
     ~CBookManager();
 
-    /**
-     * @Description: Thêm sách mới vào hệ thống và lưu file
-     * @return: true nếu thêm thành công, false nếu mã sách trùng
-     * @attention: Cần check trùng ID trước khi thêm
-     */
-    bool addBook(const CBook& book); 
+    // Add a new book (checks for duplicate ISBN)
+    bool addBook(const CBook& book);
+    
+    // Delete a book by ISBN (only if Status == 0/Available)
+    bool deleteBook(const string& strISBN);
+    
+    // Update book status (for loan operations)
+    bool updateBookStatus(const string& strISBN, int iNewStatus);
+    
+    // Find a book by ISBN
+    CBook* findBook(const string& strISBN);
+    
+    // Get the book list for display purposes
+    CGenericList<CBook>& getBookList();
+    
+    // Get book count
+    int getBookCount() const;
 };
 
-#endif // C_BOOK_MANAGER_H
+#endif // CBOOKMANAGER_H
